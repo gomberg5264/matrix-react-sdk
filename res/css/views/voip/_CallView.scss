@@ -1,0 +1,210 @@
+/*
+Copyright 2015, 2016 OpenMarket Ltd
+Copyright 2020 The Matrix.org Foundation C.I.C.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+.mx_CallView {
+    border-radius: 10px;
+    background-color: $input-lighter-bg-color;
+    padding-left: 8px;
+    padding-right: 8px;
+    // XXX: CallContainer sets pointer-events: none - should probably be set back in a better place
+    pointer-events: initial;
+}
+
+.mx_CallView_large {
+    padding-bottom: 10px;
+
+    .mx_CallView_voice {
+        height: 360px;
+    }
+}
+
+.mx_CallView_pip {
+    width: 320px;
+
+    .mx_CallView_voice {
+        height: 180px;
+    }
+}
+
+.mx_CallView_voice {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $inverted-bg-color;
+}
+
+.mx_CallView_video {
+    width: 100%;
+    position: relative;
+    z-index: 30;
+}
+
+.mx_CallView_header {
+    height: 44px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+
+    .mx_BaseAvatar {
+        margin-right: 12px;
+    }
+}
+
+.mx_CallView_header_callType {
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.mx_CallView_header_controls {
+    margin-left: auto;
+}
+
+.mx_CallView_header_button {
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+
+    &::before {
+        content: '';
+        display: inline-block;
+        height: 20px;
+        width: 20px;
+        vertical-align: middle;
+        background-color: $secondary-fg-color;
+        mask-repeat: no-repeat;
+        mask-size: contain;
+        mask-position: center;
+    }
+}
+
+.mx_CallView_header_button_fullscreen {
+    &::before {
+        mask-image: url('$(res)/img/element-icons/call/fullscreen.svg');
+    }
+}
+
+.mx_CallView_header_button_expand {
+    &::before {
+        mask-image: url('$(res)/img/element-icons/call/expand.svg');
+    }
+}
+
+.mx_CallView_header_roomName {
+    font-weight: bold;
+    font-size: 12px;
+    line-height: initial;
+}
+
+.mx_CallView_header_callTypeSmall {
+    font-size: 12px;
+    color: $secondary-fg-color;
+    line-height: initial;
+}
+
+.mx_CallView_header_phoneIcon {
+    display: inline-block;
+    margin-right: 6px;
+    height: 16px;
+    width: 16px;
+    vertical-align: middle;
+
+    &::before {
+        content: '';
+        display: inline-block;
+        vertical-align: top;
+
+        height: 16px;
+        width: 16px;
+        background-color: $warning-color;
+        mask-repeat: no-repeat;
+        mask-size: contain;
+        mask-position: center;
+        mask-image: url('$(res)/img/element-icons/call/voice-call.svg');
+    }
+}
+
+.mx_CallView_callControls {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    bottom: 5px;
+    width: 100%;
+    opacity: 1;
+    transition: opacity 0.5s;
+}
+
+.mx_CallView_callControls_hidden {
+    opacity: 0.001; // opacity 0 can cause a re-layout
+    pointer-events: none;
+}
+
+.mx_CallView_callControls_button {
+    cursor: pointer;
+    margin-left: 8px;
+    margin-right: 8px;
+
+
+    &::before {
+        content: '';
+        display: inline-block;
+
+        height: 48px;
+        width: 48px;
+
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: center;
+    }
+}
+
+.mx_CallView_callControls_button_micOn {
+    &::before {
+        background-image: url('$(res)/img/voip/mic-on.svg');
+    }
+}
+
+.mx_CallView_callControls_button_micOff {
+    &::before {
+        background-image: url('$(res)/img/voip/mic-off.svg');
+    }
+}
+
+.mx_CallView_callControls_button_vidOn {
+    &::before {
+        background-image: url('$(res)/img/voip/vid-on.svg');
+    }
+}
+
+.mx_CallView_callControls_button_vidOff {
+    &::before {
+        background-image: url('$(res)/img/voip/vid-off.svg');
+    }
+}
+
+.mx_CallView_callControls_button_hangup {
+    &::before {
+        background-image: url('$(res)/img/voip/hangup.svg');
+    }
+}
+
+.mx_CallView_callControls_button_invisible {
+    visibility: hidden;
+    pointer-events: none;
+    position: absolute;
+}
